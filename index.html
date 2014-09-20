@@ -1,0 +1,26 @@
+<html>
+	<head>
+	    <script type="text/javascript">
+            function getphp() {
+               //document.write("test");
+		      xmlhttp=new XMLHttpRequest();
+			  xmlhttp.onreadystatechange=function() {
+			    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+			      document.getElementById("table").innerHTML = xmlhttp.responseText;
+			    }
+			  }
+			  xmlhttp.open("GET","server.php?",true);
+			  xmlhttp.send();
+			}
+					
+        </script>
+	</head>
+	<body>
+		<p id="demo">My First Paragraph</p>
+		<p> What is your name? </p>		
+		<p id="table">
+		</p>
+		<script> getphp();
+		</script>
+	</body>
+</html>
