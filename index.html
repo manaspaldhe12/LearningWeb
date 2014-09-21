@@ -32,6 +32,10 @@
                     event.preventDefault();
                     $("#tags").val(ui.item.label);
                     printautocomplete(event, ui)
+                },
+                focus: function(event, ui) {
+                    event.preventDefault();
+                    $("#tags").val(ui.item.label);
                 }
             });
         };
