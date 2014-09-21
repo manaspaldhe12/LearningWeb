@@ -18,17 +18,26 @@
         };
 
         function autocomplete (data) {
-
-            var data = String(data);
-            console.log(data);
+            var data = data.toString();
             var availableTags = data.split(',');
-            $( "#tags" ).autocomplete({
-                source: availableTags
+            var autocompleteData = [];
+            for (var i = 0; i < availableTags.length; i++){
+                autocompleteData[i] = {};
+                autocompleteData[i].value = i.toString();
+                autocompleteData[i].label = availableTags[i];
+            }
+            $("#tags").autocomplete({
+                source: autocompleteData,
+                select: function (event, ui) {
+                    event.preventDefault();
+                    $("#tags").val(ui.item.label);
+                    printautocomplete(event, ui)
+                }
             });
         };
 
-        function printautocomplete () {
-                        
+        function printautocomplete (event, ui) {
+            console.log(ui);
         }
 
     </script>
@@ -37,7 +46,6 @@
 <body>
 <p id="demo">My First Paragraph</p>
 <p id="name"> What is your name? </p>
-<p id="table"></p>
 <div class="ui-widget">
     <label for="tags">Tags: </label>
     <input id="tags">
