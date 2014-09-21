@@ -1,26 +1,47 @@
 <html>
-	<head>
-	    <script type="text/javascript">
-            function getphp() {
-               //document.write("test");
-		      xmlhttp=new XMLHttpRequest();
-			  xmlhttp.onreadystatechange=function() {
-			    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-			      document.getElementById("table").innerHTML = xmlhttp.responseText;
-			    }
-			  }
-			  xmlhttp.open("GET","server.php?",true);
-			  xmlhttp.send();
-			}
-					
-        </script>
-	</head>
-	<body>
-		<p id="demo">My First Paragraph</p>
-		<p> What is your name? </p>		
-		<p id="table">
-		</p>
-		<script> getphp();
-		</script>
-	</body>
+<head>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+    <script type="text/javascript">
+        function getphp () {
+            //document.write("test");
+            xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    autocomplete(xmlhttp.responseText);
+                }
+            }
+            xmlhttp.open("GET","server.php?",true);
+            xmlhttp.send();
+        };
+
+        function autocomplete (data) {
+
+            var data = String(data);
+            console.log(data);
+            var availableTags = data.split(',');
+            $( "#tags" ).autocomplete({
+                source: availableTags
+            });
+        };
+
+        function printautocomplete () {
+                        
+        }
+
+    </script>
+
+</head>
+<body>
+<p id="demo">My First Paragraph</p>
+<p id="name"> What is your name? </p>
+<p id="table"></p>
+<div class="ui-widget">
+    <label for="tags">Tags: </label>
+    <input id="tags">
+</div>
+<script> getphp(); </script>
+</body>
 </html>
