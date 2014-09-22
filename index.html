@@ -11,6 +11,7 @@
             xmlhttp.onreadystatechange = function() {
                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
                     autocomplete(xmlhttp.responseText);
+                    datepicker();
                 }
             }
             xmlhttp.open("GET","server.php?",true);
@@ -44,6 +45,21 @@
             console.log(ui);
         }
 
+        function datepicker () {
+            $( "#datepicker" ).datepicker();
+            datereadthread();
+        };
+
+        function datereadthread () {
+            var currentDate = $( "#datepicker" ).datepicker( "getDate" );
+            if (currentDate){
+                console.log(currentDate);
+            }else{
+                setTimeout(datereadthread, 1000);
+            }
+
+        }
+
     </script>
 
 </head>
@@ -54,6 +70,7 @@
     <label for="tags">Tags: </label>
     <input id="tags">
 </div>
+<p>Date: <input type="text" id="datepicker"></p>
 <script> getphp(); </script>
 </body>
 </html>
